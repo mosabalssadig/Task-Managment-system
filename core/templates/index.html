@@ -1,0 +1,275 @@
+{% extends 'layout.html' %} {% block body %}
+{% load static %}
+<head> 
+  <style>
+
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+.sidebar{
+  margin-left:230px;
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  background: #009688;
+  transition: all .5s ease;
+}
+.sidebar header{
+  font-size: 28px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #1b1b1b;
+  user-select: none;
+  font-family: 'Montserrat', sans-serif;
+}
+.sidebar a{
+  display: block;
+  height: 65px;
+  width: 100%;
+  color: white;
+  line-height: 65px;
+  padding-left: 30px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  border-left: 5px solid transparent;
+  font-family: 'Open Sans', sans-serif;
+  transition: all .5s ease;
+}
+a.active,a:hover{
+  border-left: 5px solid #009688;
+  background:#009688;
+}
+.sidebar a i{
+  font-size: 23px;
+  margin-right: 16px;
+}
+.sidebar a span{
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+label #btn,label #cancel{
+  position: absolute;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid #009688;
+  margin: 15px 30px;
+  font-size: 29px;
+  background:#009688;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  line-height: 45px;
+  transition: all .5s ease;
+}
+label #cancel{
+  opacity: 0;
+  visibility: hidden;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  margin-left: 245px;
+  opacity: 0;
+  visibility: hidden;
+}
+#check:checked ~ label #cancel{
+  margin-left: 245px;
+  opacity: 1;
+  visibility: visible;
+}
+@media(max-width : 860px){
+  .sidebar{
+    height: auto;
+    width: 70px;
+    left: 0;
+    margin: 100px 0;
+  }
+  header,#btn,#cancel{
+    display: none;
+  }
+  span{
+    position: absolute;
+    margin-left: 23px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .sidebar a{
+    height: 60px;
+  }
+  .sidebar a i{
+    margin-left:300px;
+  }
+  a:hover {
+    width: 200px;
+  }
+  .sidebar a:hover span{
+    opacity: 1;
+    visibility: visible;
+  }
+}
+table{
+  
+  text-transform: uppercase;
+  width:100%;
+  padding-left:230px;
+ border
+ padding-top:500px
+  margin:0;
+  background-color:rgb(85, 168, 141,0.5) ;
+  min-width:400px;
+}
+thead tr{
+  
+  background-color:#ffffff;
+  text-align:left;
+  font-weight:bold;
+
+}
+
+th ,td{
+  background-color:#ffffff;
+  
+  padding: 12px 15px;
+}
+
+tbody tr{
+  border-bottom: 2px solid #dddddd;
+}
+.mbut{
+  border: none;
+  width:80px;
+  height: 40px;
+  cursor: pointer;
+  background-color:#fff0;
+}
+  </style>
+  <link rel="stylesheet" href="{% static 'styling.css'%}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
+
+      <script src="{% static 'bootstrap.min.css'%}"></script>
+    
+</head>
+
+ 
+
+  <div class="sidebar">
+    <a href="{% url 'index' %}">
+      <header>Managment</header>
+        </a>
+    <a href="{% url 'addUser' %}">
+      
+      <i class="fa-solid fa-user-plus"></i>
+      <span>Add user</span>
+    </a>
+    <a href="{% url 'addTask' %}">
+      <i class="fas fa-link"></i>
+      <span>Add Tasks</span>
+    </a>
+    <a href="{% url 'reports' %}">
+  <i class="fa-solid fa-file-lines"></i>
+  <span>reports</span>
+</a>
+<a href="{% url 'attendance' %}">
+  <i class="fa-solid fa-user-check"></i>
+  <span>attendance</span>
+</a>
+
+<a href="{% url 'history' %}">
+  <i class="fa-solid fa-clock-rotate-left"></i>
+  <span>history</span>
+
+  <a href="{% url 'administration' %}">
+    <i class="fa-solid fa-toolbox"></i>
+    <span>administration</span>
+
+  <a href="{% url 'signout' %}">
+      
+    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    <span>signout</span>
+  </a>
+  
+  </div>
+    
+</div>
+
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">task title</th>
+      <th scope="col">assigned to</th>
+      <th scope="col">start time</th>
+      <th scope="col">ends time</th>
+      <th scope="col">status</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+
+  {% for task in tasks %}
+  <tbody>
+    <tr>
+      <th scope="row">{{task.id}}</th>
+      <td>{{ task.title }}</td>
+      <td>{{ task.user_id.fullname }}</td>
+
+      <td>{{ task.start_time }}</td>
+      <td>{{ task.end_time }}</td>
+
+      {% if task.status == 0 %}
+
+      <td>incompleate</td>
+      {% elif task.status == 1 %}
+
+      <td>in progress</td>
+
+      {% elif task.status == 2 %}
+
+      <td>Complete</td>
+      {% endif %}
+
+      <td>
+        <form action="{% url 'deletetask' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}" />
+          <button class="mbut" type="submit" name="task" value="{{ task.id }}">
+            Delete
+          </button>
+        </form>
+
+<br>
+        <form action="{% url 'taskview' task.id  %}" method="POST">
+          {% csrf_token %}
+
+
+        <button class="mbut" type="submit" name="task" value="{{ task.id }}">
+          edit
+        </button>
+
+
+      </form>
+
+
+
+
+      </td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
